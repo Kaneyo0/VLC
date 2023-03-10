@@ -1,0 +1,14 @@
+{
+  "name": "vlc",
+  "version": "1.0.0",
+  "description": "Website of Vallée du Lot Conciergerie",
+  "main": "index.js",
+  "scripts": {
+    "sass:w": "sass --watch sass/main.scss:public/css/style.css"
+  },
+  "author": "Tom DUCHESNE",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.58.3"
+  }
+}

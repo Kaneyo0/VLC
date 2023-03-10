@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border-bottom: 5px solid var(--third-color);
+}
+
+.block__title {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: var(--fs-title);
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-size: var(--fs-subtitle);
+}

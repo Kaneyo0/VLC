@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./public/css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+        <script type="module" src="src/views/view.js" async></script>
+        <title> VLC Easy Home Services </title>
+    </head>
+    <body>
+        <header class="header">
+            <img class="logo" src="./public/assets/cle.svg" alt="">
+            <div class="block__title">
+                <h1 class="title"> Vallée du Lot Conciergerie </h1>
+                <h2 class="subtitle"> Easy Home Services </h2>
+            </div>
+            <nav class="nav__menu">
+                <!-- Menu de Naviguation -->
+            </nav>
+        </header>
+        <main class="main">
+            <article class="article description" id="description">
+                <div class="article__content description__contenu">
+                    <p class="description__important">Vous quittez votre résidence, je la gère en votre absence</p>
+                    <div class="sub__description">
+                        <p>A l'écoute, je mettrai tout en œuvre pour vous satisfaire, si besoin en personnalisant ma prestation.</p>
+                        <p>Mon état d'esprit, gagner puis préserver votre confiance afin que votre sérénité soit optimale durant votre absence.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="article forfaits" id="forfaits">
+                <h2 class="article__title"> forfaits </h2>
+                <div class="article__content">
+                    <div class="forfaits__list"> 
+                        <!-- Liste de tout les forfaits -->
+                    </div>
+                </div>
+            </article>
+            <article class="article prestations" id="prestations">
+                <h2 class="article__title"> prestations </h2>
+                <div class="article__content">
+                    <div class="prestations__list">
+                        <!-- Liste de toutes les prestations -->
+                    </div>
+                </div>
+            </article>
+            <article class="article contact" id="contact">
+                <h2 class="article__title"> à propos </h2>
+                <div class="article__content footer__content">
+                    <!-- Informations de l'entreprise -->
+                </div>
+            </article>
+        </main>
+
+        <template class="templates">
+            <a href="#" class="nav__element"><span class="nav__icon"></span><span class="nav__text"></span></a>
+            <div class="card forfait__card">
+                <h3 class="card__title"></h3>
+                <div class="card__content">
+                    <p class="card__description"></p>
+                    <p class="card__price"></p>
+                </div>
+            </div>
+            <p class="price__list">
+                <span class="price__text"></span>
+                <span class="price__value"></span>    
+            </p>
+            <div class="card prestation__card">
+                <p class="card__description"></p>
+                <p class="card__price"></p>
+            </div>
+            <div class="footer__block">
+                <h3 class="footer__title"></h3>
+                <p class="footer__first__content"></p>
+                <p class="footer__second__content"></p>
+            </div>
+        </template>
+    </body>
+</html>

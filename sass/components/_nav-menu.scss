@@ -1,0 +1,48 @@
+@use '../abstract/mixin' as *;
+
+.nav__menu {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 0.6rem;
+}
+
+.nav__element {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.nav__icon {
+    display: inline-block;
+    margin: 1rem 0.5rem;
+    width: 20px;
+    height: 20px;
+    border: 3px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.nav__text {
+    display: none;
+    text-transform: capitalize;
+    @include mq(L) {
+        display: block;
+    }
+}
+
+.current__nav {
+    background-color: white;
+}
+
+.nav__element:hover .nav__icon {
+    background-color: rgb(117, 117, 117);
+}
+
+
