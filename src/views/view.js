@@ -4,7 +4,9 @@ import informations from '../../data/informations.js';
 import Carousel from '../models/Carousel.js';
 
 let forfaitsList = document.querySelector('.forfaits__list');
+let forfaitsArticle = document.querySelector('.forfaits');
 let prestationList = document.querySelector('.prestations__list');
+let prestationArticle = document.querySelector('.prestations');
 let main = document.querySelector('.main');
 let navMenu = document.querySelector('.nav__menu');
 let articles = main.querySelectorAll('.article');
@@ -28,8 +30,10 @@ articles.forEach(article => {
 let navElements = document.querySelectorAll('.nav__element');
 
 document.addEventListener('DOMContentLoaded', function() {
-    new Carousel(document.querySelector('.forfaits__list'), {
-        slidesToScroll: 3,
+    new Carousel(forfaitsArticle.querySelector('.article__content'));
+
+    new Carousel(prestationArticle.querySelector('.article__content'), {
+        slidesToScroll: 2,
         slidesVisible: 2
     });
 });

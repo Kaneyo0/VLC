@@ -3,9 +3,11 @@
 .footer__content {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 5rem;
     padding: 1rem 2rem;
     @include mq(M) {
+        justify-content: space-around;
+        gap: 2rem;
         flex-direction: row;
     }
 }
@@ -13,4 +15,20 @@
 .footer__title {
     font-size: 1.5rem;
     text-transform: capitalize;
+}
+
+.contact__message {
+    position: inherit;
+    padding: 2rem 1rem;
+    font-size: 1rem;
+    z-index: 8;
+    text-align: center;
+    width: 75%;
+    @include mq(M) {
+        font-size: 2rem;
+        padding-top: 6rem;
+        width: 85%;
+        margin-left: 1rem;
+    }
+    font-weight: bold;
 }

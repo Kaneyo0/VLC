@@ -19,6 +19,15 @@
 
 .card__title {
     font-size: 1.5rem;
+    padding: 0 1rem;
+    text-transform: uppercase;
+}
+
+.card__description {
+    font-size: var(--fs-regular);
+    text-align: justify;
+    height: 100%;
+    overflow: hidden;
 }
 
 .card__price {
@@ -34,4 +43,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.price__text {
+    font-size: 1rem;
 }

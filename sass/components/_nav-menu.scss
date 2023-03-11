@@ -3,6 +3,7 @@
 .nav__menu {
     position: fixed;
     top: 50%;
+    z-index: 15;
     transform: translateY(-50%);
     right: 2rem;
     display: flex;
@@ -17,6 +18,7 @@
     color: white;
     font-size: 1.5rem;
     text-decoration: none;
+    transition: transform 0.3s;
 }
 
 .nav__icon {
@@ -45,4 +47,6 @@
     background-color: rgb(117, 117, 117);
 }
 
-
+.nav__element:hover {
+    transform: scale(1.2);
+}

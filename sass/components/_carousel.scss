@@ -1,0 +1,56 @@
+@use '../abstract/mixin' as *;
+
+.forfaits__list, .prestations__list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 2rem;
+    padding: 1rem;
+    justify-content: center;
+    align-items: baseline;
+    @include mq(M) {
+        gap: 1rem;
+    }
+}
+
+.carousel__container {
+    transition: transform 0.3s;
+    transform: translate3d(0, 0, 0);
+}
+
+.carousel__prev, .carousel__next {
+    z-index: 5;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--pink-color);
+    top: 50%;
+    padding: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.carousel__prev:hover, .carousel__next:hover {
+    transform: scale(1.2);
+}
+
+.carousel__prev { 
+    background-image: url('../../public/assets/left.svg');
+    left: 1rem;
+    @include mq(M) {
+        left: 2rem;
+    }
+}
+
+.carousel__next {
+    background-image: url('../../public/assets/right.svg');
+    right: 0.5rem;
+    @include mq(M) {
+        right: 2rem;
+    }
+}

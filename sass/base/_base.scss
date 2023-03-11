@@ -9,6 +9,8 @@ body {
 }
 
 .header {
+    position: relative;
+    z-index: 10;
     height: var(--header-height);
     background: var(--secondary-color);
 }
@@ -19,6 +21,7 @@ body {
 }
 
 .article {
+    position: relative;
     height: 100%;
     background-color: var(--main-color);
     overflow: hidden;
@@ -32,14 +35,28 @@ body {
 }
 
 .article__content {
+    position: relative;
+    z-index: 8;
     display: flex;
     align-items: center;
-    justify-content: center;
+    overflow: hidden;
     width: 75%;
     height: 92%;
+    @include mq(M) {
+        width: 85%;
+        margin-left: 1rem;
+    }
 }
 
-.footer__content {
-    display: flex;
-    justify-content: space-around;
+.background__image {
+    position: fixed;
+    z-index: 5;
+    width: 20rem;
+    top: 3rem;
+    left: 0rem;
+    @include mq(M) {
+        width: 50rem;
+        top: 5rem;
+        left: 20rem;
+    }
 }

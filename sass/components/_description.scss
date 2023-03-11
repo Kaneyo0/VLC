@@ -1,13 +1,15 @@
 @use '../abstract/mixin' as *;
 
 .description {
+    position: relative;
+    z-index: 7;
     height: 100%;
     background-image: 
     linear-gradient(
       rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 0.5)
     ),
-    url('../../public/assets/home2.jpg');
+    url('../../public/assets/home2.webp');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
