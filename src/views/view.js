@@ -29,9 +29,9 @@ class View {
         this.cards = document.querySelectorAll('.card');
         this.createEventListener();
 
-        new Carousel(this.forfaitsArticle.querySelector('.article__content'));
+        new Carousel(this.forfaitsArticle.querySelector('.article__content'), );
         new Carousel(this.prestationArticle.querySelector('.article__content'), {
-            slidesToScroll: 2,
+            slidesToScroll: 1,
             slidesVisible: 2
         });
         this.navElements[0].click();

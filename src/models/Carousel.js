@@ -33,10 +33,10 @@ class Carousel {
 
     goToItem(index) {
         if (index < 0) index = this.carouselItems.length - this.options.slidesToScroll;
-        else if (index >= this.carouselItems.length ) index = 0;
+        else if (index >= this.carouselItems.length / this.options.slidesVisible ) index = 0;
 
-        let translateX = index * (-100 / this.carouselItems.length);
-        this.carousel.style.transform = `translate3d(${translateX}rem, 0, 0)`;
+        let translateX = index * (-this.carouselItems[0].offsetWidth - 40);
+        this.carousel.style.transform = `translate3d(${translateX}px, 0, 0)`;
         this.currentSlide = index;
     }
 }

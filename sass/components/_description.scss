@@ -10,9 +10,12 @@
       rgba(0, 0, 0, 0.5)
     ),
     url('../../public/assets/home2.webp');
-    background-position: center;
+    background-position: 85%;
     background-repeat: no-repeat;
     background-size: cover;
+    @include mq(M) {
+        background-position: center;
+    }
 }
 
 .description__contenu {
