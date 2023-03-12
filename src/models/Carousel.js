@@ -32,13 +32,10 @@ class Carousel {
     }
 
     goToItem(index) {
-        console.log(index);
-        if (index < 0) {
-            index = this.carouselItems.length - this.options.slidesToScroll;
-        } else if (index >= this.carouselItems.length - 1 || this.carouselItems[this.currentSlide + this.options.slidesToScroll] === undefined) {
-            index = 0;
-        }
-        let translateX = index * -90 / this.carouselItems.length;
+        if (index < 0) index = this.carouselItems.length - this.options.slidesToScroll;
+        else if (index >= this.carouselItems.length ) index = 0;
+
+        let translateX = index * (-100 / this.carouselItems.length);
         this.carousel.style.transform = `translate3d(${translateX}rem, 0, 0)`;
         this.currentSlide = index;
     }

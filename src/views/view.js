@@ -3,138 +3,174 @@ import prestations from '../../data/prestations.js';
 import informations from '../../data/informations.js';
 import Carousel from '../models/Carousel.js';
 
-let forfaitsList = document.querySelector('.forfaits__list');
-let forfaitsArticle = document.querySelector('.forfaits');
-let prestationList = document.querySelector('.prestations__list');
-let prestationArticle = document.querySelector('.prestations');
-let main = document.querySelector('.main');
-let navMenu = document.querySelector('.nav__menu');
-let articles = main.querySelectorAll('.article');
-let footerContent = document.querySelector('.footer__content');
-let templates = document.querySelector('.templates').content;
-let currentLink = 0;
-let url = window.location.href;
-const timeBeforeScroll = 800;
-let lastScroll = Date.now();
+const timeBeforeScroll = 500;
 
-let navElem;
-let navText;
-articles.forEach(article => {
-    navElem = templates.cloneNode(true).querySelector('.nav__element');
-    navText = navElem.querySelector('.nav__text');
-    navElem.href = '#' + article.classList[1];
-    navText.textContent = article.classList[1];
-    navMenu.append(navElem);
-});
-
-let navElements = document.querySelectorAll('.nav__element');
-
-document.addEventListener('DOMContentLoaded', function() {
-    new Carousel(forfaitsArticle.querySelector('.article__content'));
-
-    new Carousel(prestationArticle.querySelector('.article__content'), {
-        slidesToScroll: 2,
-        slidesVisible: 2
-    });
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
-
-document.addEventListener('click', event => {
-    let elemCliked = event.target;
-    switch (true) {
-        case elemCliked.classList.contains("nav__element") :
-            navElements.forEach(navElement => {
-                navElement.querySelector('.nav__icon').classList.remove("current__nav");
-            });
-            elemCliked.querySelector('.nav__icon').classList.add("current__nav");
-            break;
-    }
-});
-
-document.addEventListener('wheel', event => {
-    if (Date.now() - lastScroll > timeBeforeScroll) checkScrollDirection(event);
-});
-
-function checkScrollDirection(event) {
+class View {
+    forfaitsList = document.querySelector('.forfaits__list');
+    forfaitsArticle = document.querySelector('.forfaits');
+    prestationList = document.querySelector('.prestations__list');
+    prestationArticle = document.querySelector('.prestations');
+    cards;
+    main = document.querySelector('.main');
+    navMenu = document.querySelector('.nav__menu');
+    navElements;
+    articles = this.main.querySelectorAll('.article');
+    footerContent = document.querySelector('.footer__content');
+    templates = document.querySelector('.templates').content;
+    currentLink = 0;
+    url = window.location.href;
     lastScroll = Date.now();
-    if (!checkScrollDirectionIsUp(event) && currentLink < navElements.length-1) currentLink++;
-    if (checkScrollDirectionIsUp(event) && currentLink > 0) currentLink--;
-    navElements[currentLink].click();
-}
-  
-function checkScrollDirectionIsUp(event) {
-    if (event.deltaY != 0 && (event.deltaX > 300 || event.deltaX < -300)) return event.wheelDelta > 0;
-    return event.deltaY < 0;
-}
 
-let newForfait;
-let title;
-let description;
-let price;
-let priceElem;
-let priceText;
-let priceValue;
-forfaits.forEach(forfait => {
-    newForfait = templates.cloneNode(true).querySelector('.forfait__card');
-    title = newForfait.querySelector('.card__title');
-    description = newForfait.querySelector('.card__description');
-    price = newForfait.querySelector('.card__price');
-    title.textContent = forfait.name;
-    if (forfait.price.length > 1) {
-        forfait.price.forEach(forfaitPrice => {
-            priceElem = templates.cloneNode(true).querySelector('.price__list');
-            priceText = priceElem.querySelector('.price__text');
-            priceValue = priceElem.querySelector('.price__value');
+    constructor(){
+        this.createNavMenu();
+        this.createForfaits();
+        this.createPrestations();
+        this.createInformations();
+        this.cards = document.querySelectorAll('.card');
+        this.createEventListener();
 
-            priceText.textContent = forfaitPrice.text;
-            priceValue.textContent = forfaitPrice.value + '€';
-
-            price.append(priceElem);
-        })
-    } else {
-        price.textContent = forfait.price + '€';
+        new Carousel(this.forfaitsArticle.querySelector('.article__content'));
+        new Carousel(this.prestationArticle.querySelector('.article__content'), {
+            slidesToScroll: 2,
+            slidesVisible: 2
+        });
+        this.navElements[0].click();
     }
-    description.textContent = forfait.description;
-    forfaitsList.append(newForfait);
-});
 
-let newPrestation;
-prestations.forEach(prestation => {
-    newPrestation = templates.cloneNode(true).querySelector('.prestation__card');
-    description = newPrestation.querySelector('.card__description');
-    price = newPrestation.querySelector('.card__price');
-    description.textContent = prestation.text;
-    price.textContent = prestation.price;
-    prestationList.append(newPrestation);
-});
+    createEventListener() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+        
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        document.addEventListener('click', event => {
+            let elemCliked = event.target;
+            switch (true) {
+                case elemCliked.classList.contains('nav__element') || 
+                    elemCliked.classList.contains('nav__text') || 
+                    elemCliked.classList.contains('nav__icon') :
+                    let index = 0;
+                    this.navElements.forEach(navElement => {
+                        navElement.querySelector('.nav__icon').classList.remove("current__nav");
+                        if (navElement == elemCliked || navElement.contains(elemCliked)) {
+                            this.currentLink = index;
+                            navElement.querySelector('.nav__icon').classList.add("current__nav");
+                        }
+                        index++;
+                    });
+                    break;
+                default :
+                    this.cards.forEach(card => {
+                        if (card.contains(elemCliked)) {
+                            this.navElements[this.navElements.length - 1].click()
+                        };
+                    });
+            }
+        });
+        
+        document.addEventListener('wheel', event => {
+            let index = this.currentLink;
+            if (Date.now() - this.lastScroll > timeBeforeScroll) {
+                if (!this.checkScrollDirectionIsUp(event) && this.currentLink < this.navElements.length-1) index++;
+                if (this.checkScrollDirectionIsUp(event) && this.currentLink > 0) index--;
+                this.goToArticle(index);
+            } 
+        });
+    }
 
-let footerTitle;
-let footerMainInfo;
-let footerSecondInfo;
-let footerBlock;
-informations.forEach(information => {
-    footerBlock = templates.cloneNode(true).querySelector('.footer__block');
-    footerTitle = footerBlock.querySelector('.footer__title');
-    footerMainInfo = footerBlock.querySelector('.footer__first__content');
-    footerSecondInfo = footerBlock.querySelector('.footer__second__content');
+    createNavMenu() {
+        let navElem;
+        let navText;
+        this.articles.forEach(article => {
+            navElem = this.templates.cloneNode(true).querySelector('.nav__element');
+            navText = navElem.querySelector('.nav__text');
+            navElem.href = '#' + article.classList[1];
+            navText.textContent = article.classList[1];
+            this.navMenu.append(navElem);
+        });
+        this.navElements = document.querySelectorAll('.nav__element');
+    }
 
-    footerTitle.textContent = information.title;
-    footerMainInfo.textContent = information.first;
-    footerSecondInfo.textContent = information.second;
+    createForfaits() {
+        let newForfait;
+        let title;
+        let description;
+        let price;
+        let priceElem;
+        let priceText;
+        let priceValue;
+        forfaits.forEach(forfait => {
+            newForfait = this.templates.cloneNode(true).querySelector('.forfait__card');
+            title = newForfait.querySelector('.card__title');
+            description = newForfait.querySelector('.card__description');
+            price = newForfait.querySelector('.card__price');
+            title.textContent = forfait.name;
+            if (forfait.price.length > 1) {
+                forfait.price.forEach(forfaitPrice => {
+                    priceElem = this.templates.cloneNode(true).querySelector('.price__list');
+                    priceText = priceElem.querySelector('.price__text');
+                    priceValue = priceElem.querySelector('.price__value');
 
-    footerContent.append(footerBlock);
-});
+                    priceText.textContent = forfaitPrice.text;
+                    priceValue.textContent = forfaitPrice.value + '€';
 
-navElements[0].querySelector('.nav__icon').classList.add("current__nav");
-if (url.includes('#')) {
-    document.location.href=url.split('#')[0]; 
+                    price.append(priceElem);
+                })
+            } else {
+                price.textContent = forfait.price + '€';
+            }
+            description.textContent = forfait.description;
+            this.forfaitsList.append(newForfait);
+        });
+    }
+
+    createPrestations() {
+        let newPrestation;
+        let description;
+        let price;
+        prestations.forEach(prestation => {
+            newPrestation = this.templates.cloneNode(true).querySelector('.prestation__card');
+            description = newPrestation.querySelector('.card__description');
+            price = newPrestation.querySelector('.card__price');
+            description.textContent = prestation.text;
+            price.textContent = prestation.price;
+            this.prestationList.append(newPrestation);
+        });
+    }
+
+    createInformations() {
+        let footerTitle;
+        let footerMainInfo;
+        let footerSecondInfo;
+        let footerBlock;
+        informations.forEach(information => {
+            footerBlock = this.templates.cloneNode(true).querySelector('.footer__block');
+            footerTitle = footerBlock.querySelector('.footer__title');
+            footerMainInfo = footerBlock.querySelector('.footer__first__content');
+            footerSecondInfo = footerBlock.querySelector('.footer__second__content');
+
+            footerTitle.textContent = information.title;
+            footerMainInfo.textContent = information.first;
+            footerSecondInfo.textContent = information.second;
+
+            this.footerContent.append(footerBlock);
+        });
+    }
+
+    goToArticle(index) {
+        this.lastScroll = Date.now();
+        this.navElements[index].click();
+    }
+      
+    checkScrollDirectionIsUp(event) {
+        if (event.deltaY != 0 && (event.deltaX > 300 || event.deltaX < -300)) return event.wheelDelta > 0;
+        return event.deltaY < 0;
+    }
 }
+
+export default View;

@@ -4,11 +4,13 @@
     justify-content: center;
     gap: 1rem;
     border-bottom: 5px solid var(--third-color);
+    padding-left: 1rem;
 }
 
 .block__title {
     display: flex;
     flex-direction: column;
+    line-height: 1.4rem;
 }
 
 .title {

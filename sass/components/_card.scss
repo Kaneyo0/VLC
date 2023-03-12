@@ -8,13 +8,21 @@
     background-color: var(--secondary-color);
     border: 5px solid var(--third-color);
     padding: 1rem;
+    margin: 1rem;
     border-radius: 25px;
     position: relative;
     width: 250px;
+    cursor: pointer;
+    transition: transform 0.3s;
     @include mq(M) {
         width: 350px;
         padding: 2rem;
     }
+}
+
+.card:hover {
+    background-color: var(--card-hover-color);
+    transform: scale(1.1);
 }
 
 .card__title {

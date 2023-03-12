@@ -5,13 +5,8 @@
     flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
-    gap: 2rem;
-    padding: 1rem;
     justify-content: center;
     align-items: baseline;
-    @include mq(M) {
-        gap: 1rem;
-    }
 }
 
 .carousel__container {
@@ -36,12 +31,13 @@
 }
 
 .carousel__prev:hover, .carousel__next:hover {
+    background-color: var(--pink-hover-color);
     transform: scale(1.2);
 }
 
 .carousel__prev { 
     background-image: url('../../public/assets/left.svg');
-    left: 1rem;
+    left: 0.5rem;
     @include mq(M) {
         left: 2rem;
     }
