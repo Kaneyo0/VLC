@@ -20,6 +20,8 @@ class View {
     currentLink = 0;
     url = window.location.href;
     lastScroll = Date.now();
+    xDown = null;                                                        
+    yDown = null;
 
     constructor(){
         this.createNavMenu();
@@ -81,6 +83,9 @@ class View {
                 this.goToArticle(index);
             } 
         });
+
+        document.addEventListener('touchstart', this.handleTouchStart.bind(this), false);        
+        document.addEventListener('touchmove', this.handleTouchMove.bind(this), false);
     }
 
     createNavMenu() {
@@ -99,6 +104,7 @@ class View {
     createForfaits() {
         let newForfait;
         let title;
+        let subtitle;
         let description;
         let price;
         let priceElem;
@@ -107,9 +113,11 @@ class View {
         forfaits.forEach(forfait => {
             newForfait = this.templates.cloneNode(true).querySelector('.forfait__card');
             title = newForfait.querySelector('.card__title');
+            subtitle = newForfait.querySelector('.card__subtitle');
             description = newForfait.querySelector('.card__description');
             price = newForfait.querySelector('.card__price');
             title.textContent = forfait.name;
+            if (forfait.subname) subtitle.textContent = forfait.subname;
             if (forfait.price.length > 1) {
                 forfait.price.forEach(forfaitPrice => {
                     priceElem = this.templates.cloneNode(true).querySelector('.price__list');
@@ -165,6 +173,48 @@ class View {
     goToArticle(index) {
         this.lastScroll = Date.now();
         this.navElements[index].click();
+    }
+
+    getTouches(evt) {
+        return evt.touches;
+    }                                                     
+                                                                               
+    handleTouchStart(evt) {
+        const firstTouch = this.getTouches(evt)[0];                                      
+        this.xDown = firstTouch.clientX;                                      
+        this.yDown = firstTouch.clientY;                                      
+    }                                               
+                                                                               
+    handleTouchMove(evt) {
+        if (! this.xDown || ! this.yDown) return;
+    
+        let xUp = evt.touches[0].clientX;                                    
+        let yUp = evt.touches[0].clientY;
+    
+        let xDiff = this.xDown - xUp;
+        let yDiff = this.yDown - yUp;
+
+        let index = this.currentLink;
+                                                                             
+        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+            if (xDiff > 0) {
+                /* right swipe */ 
+            } else {
+                /* left swipe */
+            }                       
+        } else {
+            if (yDiff > 0) {
+                index++; 
+            } else { 
+                index--;
+            } 
+            
+            this.goToArticle(index);
+        }
+
+        /* reset values */
+        this.xDown = null;
+        this.yDown = null;                                             
     }
       
     checkScrollDirectionIsUp(event) {

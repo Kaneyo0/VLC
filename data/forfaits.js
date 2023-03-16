@@ -21,7 +21,8 @@ let forfaits = [
         Un  rapport vous est transmis à l'issue.`
     },
     {
-        name: 'serenite (durée supérieure à 2 mois)',
+        name: 'serenite',
+        subname: '(durée supérieure à 2 mois)',
         price: [
             {
                 text: '1 visite/mois',
