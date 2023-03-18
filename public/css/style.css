@@ -251,13 +251,13 @@ body {
   }
 }
 
-.description__important {
+.main__description {
   font-size: 1.5rem;
   font-weight: bold;
   text-transform: uppercase;
 }
 @media (min-width: 1300px) {
-  .description__important {
+  .main__description {
     font-size: 2.5rem;
   }
 }
@@ -454,6 +454,7 @@ body {
 
 .article__title {
   text-transform: uppercase;
+  position: inherit;
   z-index: 9;
   font-size: 1.5rem;
   padding: 1rem;
@@ -469,6 +470,22 @@ body {
   width: 85%;
   height: 92%;
   padding-left: 1rem;
+}
+
+.language__selector {
+  position: absolute;
+  color: white;
+  font-family: var(--ff-source);
+  cursor: pointer;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  right: 1rem;
+}
+
+.language__option {
+  border: none;
 }
 
 /*# sourceMappingURL=style.css.map */

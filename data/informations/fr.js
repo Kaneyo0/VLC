@@ -1,4 +1,4 @@
-let informations = [
+let fr = [
     {
         title: 'contact',
         first: 'fredericdelamare@orange.fr',
@@ -16,4 +16,4 @@ let informations = [
     }
 ];
 
-export default informations;
+export default fr;

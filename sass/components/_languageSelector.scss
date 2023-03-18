@@ -1,0 +1,15 @@
+.language__selector {
+    position: absolute;
+    color: white;
+    font-family: var(--ff-source);
+    cursor: pointer;
+    background-color: var(--main-color);
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    right: 1rem;
+}
+
+.language__option {
+    border: none;
+}

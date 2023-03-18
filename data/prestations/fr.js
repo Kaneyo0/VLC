@@ -1,4 +1,4 @@
-let prestations = [
+let fr = [
     {
         text: 'Garde des clés',
         price: '10€ / mois ou 100€ / an (prix de base d\'une boite à clés sécurisée 15€)'
@@ -42,7 +42,7 @@ let prestations = [
     {
         text: 'Autres prestations selon vos besoins, nous consulter.',
         price: ''
-    }  
+    }
 ];
 
-export default prestations;
+export default fr;

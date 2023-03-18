@@ -1,9 +1,17 @@
-import forfaits from '../../data/forfaits.js';
-import prestations from '../../data/prestations.js';
-import informations from '../../data/informations.js';
+import languages from '../../data/languages.js';
+import description from '../../data/description/description.js';
+import forfaits from '../../data/forfaits/forfaits.js';
+import prestations from '../../data/prestations/prestations.js';
+import contactMessage from '../../data/contactMessage.js';
+import informations from '../../data/informations/informations.js';
+
+import Description from '../models/Description.js';
+import Forfait from '../models/Forfait.js';
+import Prestation from '../models/Prestation.js';
+import Information from '../models/Information.js';
 import Carousel from '../models/Carousel.js';
 
-const timeBeforeScroll = 500;
+const timeBeforeScroll = 400;
 
 class View {
     forfaitsList = document.querySelector('.forfaits__list');
@@ -12,6 +20,7 @@ class View {
     prestationArticle = document.querySelector('.prestations');
     cards;
     main = document.querySelector('.main');
+    languageSelector = document.querySelector('.language__selector');
     navMenu = document.querySelector('.nav__menu');
     navElements;
     articles = this.main.querySelectorAll('.article');
@@ -23,14 +32,24 @@ class View {
     xDown = null;                                                        
     yDown = null;
 
-    constructor(){
+    constructor() {
+        this.description;
+        this.allForfaits = [];
+        this.allPrestations = [];
+        this.allInformations = [];
+        this.contactMessage = document.querySelector('.contact__message');
+        
+        this.createLanguagesSelector();
+        this.createDescription();
         this.createNavMenu();
         this.createForfaits();
         this.createPrestations();
         this.createInformations();
         this.cards = document.querySelectorAll('.card');
         this.createEventListener();
-
+        
+        this.contactMessage.textContent = contactMessage[`${this.languageSelector.value}`];
+        
         new Carousel(this.forfaitsArticle.querySelector('.article__content'), );
         new Carousel(this.prestationArticle.querySelector('.article__content'), {
             slidesToScroll: 1,
@@ -48,6 +67,10 @@ class View {
                     behavior: 'smooth'
                 });
             });
+        });
+
+        this.languageSelector.addEventListener('change', event => {
+            this.setAllData();
         });
         
         document.addEventListener('click', event => {
@@ -88,9 +111,25 @@ class View {
         document.addEventListener('touchmove', this.handleTouchMove.bind(this), false);
     }
 
+    createLanguagesSelector() {
+        let option;
+
+        this.removeAllChildren(this.languageSelector);
+
+        languages.forEach(language => {
+            option = this.templates.cloneNode(true).querySelector('.language__option');
+            option.value = language.value;
+            option.textContent = language.name;
+            this.languageSelector.append(option);
+        });
+    }
+
     createNavMenu() {
         let navElem;
         let navText;
+
+        this.removeAllChildren(this.navMenu);
+
         this.articles.forEach(article => {
             navElem = this.templates.cloneNode(true).querySelector('.nav__element');
             navText = navElem.querySelector('.nav__text');
@@ -101,72 +140,74 @@ class View {
         this.navElements = document.querySelectorAll('.nav__element');
     }
 
+    createDescription() {
+        this.description = new Description(document.querySelector('.description__contenu'));
+        this.description.setData(description[`${this.languageSelector.value}`]);
+    }
+
     createForfaits() {
+        let forfaitElem;
         let newForfait;
-        let title;
-        let subtitle;
-        let description;
-        let price;
-        let priceElem;
-        let priceText;
-        let priceValue;
-        forfaits.forEach(forfait => {
-            newForfait = this.templates.cloneNode(true).querySelector('.forfait__card');
-            title = newForfait.querySelector('.card__title');
-            subtitle = newForfait.querySelector('.card__subtitle');
-            description = newForfait.querySelector('.card__description');
-            price = newForfait.querySelector('.card__price');
-            title.textContent = forfait.name;
-            if (forfait.subname) subtitle.textContent = forfait.subname;
-            if (forfait.price.length > 1) {
-                forfait.price.forEach(forfaitPrice => {
-                    priceElem = this.templates.cloneNode(true).querySelector('.price__list');
-                    priceText = priceElem.querySelector('.price__text');
-                    priceValue = priceElem.querySelector('.price__value');
 
-                    priceText.textContent = forfaitPrice.text;
-                    priceValue.textContent = forfaitPrice.value + '€';
+        forfaits[`${this.languageSelector.value}`].forEach(forfait => {
+            forfaitElem = this.templates.cloneNode(true).querySelector('.forfait__card');
+            newForfait = new Forfait(forfaitElem, this.templates);
+            newForfait.setData(forfait);
 
-                    price.append(priceElem);
-                })
-            } else {
-                price.textContent = forfait.price + '€';
-            }
-            description.textContent = forfait.description;
-            this.forfaitsList.append(newForfait);
+            this.allForfaits.push(newForfait);
+            this.forfaitsList.append(newForfait.getForfait());
         });
     }
 
     createPrestations() {
+        let prestationElem;
         let newPrestation;
-        let description;
-        let price;
-        prestations.forEach(prestation => {
-            newPrestation = this.templates.cloneNode(true).querySelector('.prestation__card');
-            description = newPrestation.querySelector('.card__description');
-            price = newPrestation.querySelector('.card__price');
-            description.textContent = prestation.text;
-            price.textContent = prestation.price;
-            this.prestationList.append(newPrestation);
+
+        prestations[`${this.languageSelector.value}`].forEach(prestation => {
+            prestationElem = this.templates.cloneNode(true).querySelector('.prestation__card');
+            newPrestation = new Prestation(prestationElem);
+            newPrestation.setData(prestation);
+
+            this.allPrestations.push(newPrestation);
+            this.prestationList.append(newPrestation.getPrestation());
         });
     }
 
     createInformations() {
-        let footerTitle;
-        let footerMainInfo;
-        let footerSecondInfo;
-        let footerBlock;
-        informations.forEach(information => {
-            footerBlock = this.templates.cloneNode(true).querySelector('.footer__block');
-            footerTitle = footerBlock.querySelector('.footer__title');
-            footerMainInfo = footerBlock.querySelector('.footer__first__content');
-            footerSecondInfo = footerBlock.querySelector('.footer__second__content');
+        let informationElem;
+        let newInformation
 
-            footerTitle.textContent = information.title;
-            footerMainInfo.textContent = information.first;
-            footerSecondInfo.textContent = information.second;
+        informations[`${this.languageSelector.value}`].forEach(information => {
+            informationElem = this.templates.cloneNode(true).querySelector('.footer__block');
+            newInformation = new Information(informationElem);
+            newInformation.setData(information);
 
-            this.footerContent.append(footerBlock);
+            this.allInformations.push(newInformation);
+            this.footerContent.append(newInformation.getInformation());
+        });
+    }
+
+    setAllData() {
+        this.description.setData(description[`${this.languageSelector.value}`]);
+
+        let index = 0;
+        forfaits[`${this.languageSelector.value}`].forEach(forfait => {
+            this.allForfaits[index].setData(forfait);
+            index++;
+        });
+
+        index = 0;
+        prestations[`${this.languageSelector.value}`].forEach(prestation => {
+            this.allPrestations[index].setData(prestation);
+            index++;
+        });
+
+        this.contactMessage.textContent = contactMessage[`${this.languageSelector.value}`];
+
+        index = 0;
+        informations[`${this.languageSelector.value}`].forEach(information => {
+            this.allInformations[index].setData(information);
+            index++;
         });
     }
 
@@ -220,6 +261,12 @@ class View {
     checkScrollDirectionIsUp(event) {
         if (event.deltaY != 0 && (event.deltaX > 300 || event.deltaX < -300)) return event.wheelDelta > 0;
         return event.deltaY < 0;
+    }
+
+    removeAllChildren(element) {
+        while (element.firstChild) {
+            element.removeChild(element.lastChild);
+        }
     }
 }
 
