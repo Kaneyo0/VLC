@@ -472,6 +472,10 @@ body {
   padding-left: 1rem;
 }
 
+.title__hidden {
+  display: none;
+}
+
 .language__selector {
   position: absolute;
   color: white;

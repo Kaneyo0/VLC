@@ -119,7 +119,7 @@ class View {
         languages.forEach(language => {
             option = this.templates.cloneNode(true).querySelector('.language__option');
             option.value = language.value;
-            option.textContent = language.name;
+            option.label = language.name;
             this.languageSelector.append(option);
         });
     }
