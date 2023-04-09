@@ -211,9 +211,10 @@ class View {
         });
     }
 
-    goToArticle(index) {
+    goToArticle(index, touch = false) {
         this.lastScroll = Date.now();
-        this.navElements[index].click();
+        if (touch) this.navElements[index].touch();
+        else this.navElements[index].click();
     }
 
     getTouches(evt) {
@@ -237,21 +238,29 @@ class View {
 
         let index = this.currentLink;
                                                                              
-        if (Math.abs(xDiff) > Math.abs(yDiff)) {
-            if (xDiff > 0) {
-                /* right swipe */ 
-            } else {
-                /* left swipe */
-            }                       
-        } else {
-            if (yDiff > 0) {
-                index++; 
-            } else { 
-                index--;
-            } 
+        // if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        //     if (xDiff > 0) {
+        //         /* right swipe */ 
+        //     } else {
+        //         /* left swipe */
+        //     }                       
+        // } else {
+        //     if (yDiff > 0) {
+        //         index++; 
+        //     } else { 
+        //         index--;
+        //     } 
             
-            this.goToArticle(index);
-        }
+        //     this.goToArticle(index, true);
+        // }
+
+        if (yDiff > 0) {
+            index++; 
+        } else { 
+            index--;
+        } 
+        
+        this.goToArticle(index, true);
 
         /* reset values */
         this.xDown = null;
