@@ -213,8 +213,9 @@ class View {
 
     goToArticle(index, touch = false) {
         this.lastScroll = Date.now();
-        if (touch) this.navElements[index].touch();
-        else this.navElements[index].click();
+        // if (touch) this.navElements[index].touch();
+        // else this.navElements[index].click();
+        this.navElements[index].click();
     }
 
     getTouches(evt) {
@@ -260,7 +261,7 @@ class View {
             index--;
         } 
         
-        this.goToArticle(index, true);
+        this.goToArticle(index);
 
         /* reset values */
         this.xDown = null;
