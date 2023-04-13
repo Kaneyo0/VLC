@@ -186,6 +186,7 @@ body {
   font-size: 1.5rem;
   text-decoration: none;
   transition: transform 0.3s;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .nav__icon {
@@ -196,6 +197,7 @@ body {
   border: 3px solid white;
   border-radius: 50%;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .nav__text {
