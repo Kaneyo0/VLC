@@ -1,9 +1,9 @@
 class Description {
     constructor(descriptionElem) {
         this.container = descriptionElem;
-        this.main = descriptionElem.querySelector('.main__description');
-        this.secondary = descriptionElem.querySelector('.secondary__description');
-        this.third = descriptionElem.querySelector('.third__description');
+        this.main = descriptionElem.querySelector('.description__content__main');
+        this.subFrist = descriptionElem.querySelector('.description__content__sub__first');
+        this.subSecond = descriptionElem.querySelector('.description__content__sub__second');
     }
 
     getPrestation() {
@@ -12,8 +12,8 @@ class Description {
     
     setData({mainDescription, secondaryDescription, thirdDescription}) {
         this.main.textContent = mainDescription;
-        this.secondary.textContent = secondaryDescription;
-        this.third.textContent = thirdDescription;
+        this.subFrist.textContent = secondaryDescription;
+        this.subSecond.textContent = thirdDescription;
     }
 }
 

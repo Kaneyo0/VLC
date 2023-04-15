@@ -5,42 +5,39 @@
     z-index: 7;
     height: 100%;
     background-image: 
-    linear-gradient(
-      rgba(0, 0, 0, 0.3),
-      rgba(0, 0, 0, 0.5)
-    ),
-    url('../../public/assets/home2.webp');
+        linear-gradient(
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url('../../public/assets/home2.webp');
     background-position: 85%;
     background-repeat: no-repeat;
     background-size: cover;
     @include mq(M) {
         background-position: center;
     }
-}
-
-.description__contenu {
-    display: flex;
-    flex-direction: column;
-    gap: 5rem;
-    height: 100%;
-    width: 90% !important;
-    @include mq(L) {
-        width: 100% !important;
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 5rem;
+        height: 100%;
+        width: 90% !important;
+        text-shadow: 0px 0px 2px var(--grey-color);
+        padding: 9rem 10%;
+        text-align: center;
+        @include mq(L) {
+            width: 100% !important;
+        }
+        &__main {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            @include mq(L) {
+                font-size: 2.5rem;
+            }
+        }
+        &__sub {
+            font-size: 1rem;
+        }
     }
-    text-shadow: 0px 0px 2px var(--grey-color);
-    padding: 9rem 10%;
-    text-align: center;
-}
-
-.main__description {
-    font-size: 1.5rem;
-    @include mq(L) {
-        font-size: 2.5rem;
-    }
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.sub__description {
-    font-size: 1rem;
 }

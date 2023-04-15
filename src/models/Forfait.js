@@ -16,21 +16,20 @@ class Forfait {
         this.name.textContent = name;
         if (subname) this.subname.textContent = subname;
         if (Array.isArray(price)) {
-            let priceElem = this.price.querySelectorAll('.price__list');
+            let priceElem = this.price.querySelectorAll('.card__price__list');
             if (price.length > priceElem.length) {
-                console.log(price);
                 price.forEach(forfaitPrice => {
-                    priceElem = this.templates.cloneNode(true).querySelector('.price__list');
-                    priceElem.querySelector('.price__text').textContent = forfaitPrice.text;
-                    priceElem.querySelector('.price__value').textContent = forfaitPrice.value;
+                    priceElem = this.templates.cloneNode(true).querySelector('.card__price__list');
+                    priceElem.querySelector('.card__price__text').textContent = forfaitPrice.text;
+                    priceElem.querySelector('.card__price__value').textContent = forfaitPrice.value;
         
                     this.price.append(priceElem);
                 });
             } else {
                 let index = 0;
                 price.forEach(forfaitPrice => {
-                    priceElem[index].querySelector('.price__text').textContent = forfaitPrice.text;
-                    priceElem[index].querySelector('.price__value').textContent = forfaitPrice.value;
+                    priceElem[index].querySelector('.card__price__text').textContent = forfaitPrice.text;
+                    priceElem[index].querySelector('.card__price__value').textContent = forfaitPrice.value;
         
                     index++;
                 });

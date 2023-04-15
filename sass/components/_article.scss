@@ -5,28 +5,26 @@
     height: 100%;
     background-color: var(--main-color);
     overflow: hidden;
-}
-
-.article__title {
-    text-transform: uppercase;
-    position: inherit;
-    z-index: 9;
-    font-size: 1.5rem;
-    padding: 1rem;
-    height: 8%;
-}
-
-.article__content {
-    position: relative;
-    z-index: 8;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    width: 85%;
-    height: 92%;
-    padding-left: 1rem;
-}
-
-.title__hidden {
-    display: none;
+    scroll-snap-align: start;
+    &__title {
+        text-transform: uppercase;
+        position: inherit;
+        z-index: 9;
+        font-size: 1.5rem;
+        padding: 1rem;
+        height: 8%;
+        &__hidden {
+            display: none;
+        }
+    }
+    &__content {
+        position: relative;
+        z-index: 8;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        width: 85%;
+        height: 92%;
+        padding-left: 1rem;
+    }
 }

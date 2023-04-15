@@ -18,41 +18,37 @@
         width: 350px;
         padding: 2rem;
     }
-}
-
-.card:hover {
-    background-color: var(--card-hover-color);
-    transform: scale(1.1);
-}
-
-.card__title {
-    font-size: 1.5rem;
-    padding: 0 1rem;
-    text-transform: uppercase;
-}
-
-.card__description {
-    font-size: var(--fs-regular);
-    text-align: justify;
-    height: 100%;
-    overflow: hidden;
-}
-
-.card__price {
-    font-weight: bold;
-    text-align: end;
-    position: absolute;
-    bottom: 0px;
-    width: 85%;
-    font-size: 1.5rem;
-}
-
-.price__list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.price__text {
-    font-size: 1rem;
+    @media (hover: hover) {
+        &:hover {
+            background-color: var(--card-hover-color);
+            transform: scale(1.1);
+        }
+    }
+    &__title {
+        font-size: 1.5rem;
+        padding: 0 1rem;
+        text-transform: uppercase;
+    }
+    &__description {
+        font-size: var(--fs-regular);
+        text-align: justify;
+        height: 100%;
+        overflow: hidden;
+    }
+    &__price {
+        font-weight: bold;
+        text-align: end;
+        position: absolute;
+        bottom: 0px;
+        width: 85%;
+        font-size: 1.5rem;
+        &__list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &__text {
+            font-size: 1rem;
+        }
+    }
 }

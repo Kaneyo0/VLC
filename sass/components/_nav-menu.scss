@@ -1,6 +1,6 @@
 @use '../abstract/mixin' as *;
 
-.nav__menu {
+.nav {
     position: fixed;
     z-index: 15;
     display: flex;
@@ -15,43 +15,46 @@
         right: 2rem;
         gap: 0.6rem;
     }
-}
-
-.nav__element {
-    display: flex;
-    align-items: center;
-    color: white;
-    font-size: 1.5rem;
-    text-decoration: none;
-    transition: transform 0.3s;
-}
-
-.nav__icon {
-    display: inline-block;
-    margin: 1rem 0.5rem;
-    width: 20px;
-    height: 20px;
-    border: 3px solid white;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.nav__text {
-    display: none;
-    text-transform: capitalize;
-    @include mq(L) {
-        display: block;
+    &__element {
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 1.5rem;
+        text-decoration: none;
+        transition: transform 0.3s;
+        @media (hover: hover) {
+            &:hover .nav__icon {
+                background-color: rgb(117, 117, 117);
+            }
+            
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+        &__current {
+            background-color: white;
+        }
+    }
+    &__icon {
+        display: inline-block;
+        margin: 1rem 0.5rem;
+        width: 20px;
+        height: 20px;
+        border: 3px solid white;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    &__text {
+        display: none;
+        text-transform: capitalize;
+        @include mq(L) {
+            display: block;
+        }
     }
 }
 
-.current__nav {
-    background-color: white;
+#description, #forfaits, #prestations, #contact {
+	scroll-behavior: smooth;
 }
 
-.nav__element:hover .nav__icon {
-    background-color: rgb(117, 117, 117);
-}
 
-.nav__element:hover {
-    transform: scale(1.2);
-}

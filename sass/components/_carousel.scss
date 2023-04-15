@@ -31,9 +31,11 @@
     transition: transform 0.3s;
 }
 
-.carousel__prev:hover, .carousel__next:hover {
-    background-color: var(--pink-hover-color);
-    transform: scale(1.2);
+@media (hover: hover) {
+    .carousel__prev:hover, .carousel__next:hover {
+        background-color: var(--pink-hover-color);
+        transform: scale(1.2);
+    }
 }
 
 .carousel__prev { 

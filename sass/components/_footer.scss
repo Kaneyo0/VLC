@@ -1,6 +1,6 @@
 @use '../abstract/mixin' as *;
 
-.footer__content {
+.footer {
     display: flex;
     flex-direction: column;
     gap: 5rem;
@@ -12,11 +12,10 @@
         flex-direction: row;
         font-size: 1rem;
     }
-}
-
-.footer__title {
-    font-size: 1.5rem;
-    text-transform: capitalize;
+    &__title {
+        font-size: 1.5rem;
+        text-transform: capitalize;
+    }
 }
 
 .contact__message {

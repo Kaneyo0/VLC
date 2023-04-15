@@ -1,3 +1,5 @@
+@use '../abstract/mixin' as *;
+
 .header {
     display: flex;
     align-items: center;
@@ -14,9 +16,13 @@
 }
 
 .title {
-    font-size: var(--fs-title);
-    width: 100%;
+    font-size: 1.3rem;
+    width: 50%;
     text-transform: uppercase;
+    @include mq(M) {
+        font-size: var(--fs-title);
+        width: 100%;
+    }
 }
 
 .subtitle {

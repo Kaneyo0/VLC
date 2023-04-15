@@ -18,7 +18,15 @@ body {
 
 .main {
     height: var(--main-height);
-    overflow-y: hidden;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    /* Firefox scrollbar */
+    scrollbar-width: none;
+    /* other scrollbar */
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .background__image {
