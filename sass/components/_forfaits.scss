@@ -5,5 +5,8 @@
 }
 
 .forfait__card {
-    height: 25rem;
+    height: 28rem;
+    @include mq(M) {
+        height: 25rem;
+    }
 }

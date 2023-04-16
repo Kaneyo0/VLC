@@ -283,20 +283,21 @@ body {
 }
 
 .forfait__card {
-  height: 25rem;
-}
-
-.prestations__list {
-  height: 30rem;
+  height: 28rem;
 }
 @media (min-width: 1000px) {
-  .prestations__list {
-    height: 35rem;
+  .forfait__card {
+    height: 25rem;
   }
 }
 
+.prestations__list {
+  height: 35rem;
+}
+
 .prestation__card {
-  height: 10rem;
+  height: 15rem;
+  width: 13rem !important;
 }
 
 .prestation__card .card__price {
@@ -359,7 +360,7 @@ body {
 @media (min-width: 1000px) {
   .card {
     width: 350px;
-    padding: 2rem;
+    padding: 5%;
   }
 }
 @media (hover: hover) {
@@ -367,6 +368,9 @@ body {
     background-color: var(--card-hover-color);
     transform: scale(1.1);
   }
+}
+.card__content {
+  height: 80%;
 }
 .card__title {
   font-size: 1.5rem;
@@ -376,15 +380,18 @@ body {
 .card__description {
   font-size: var(--fs-regular);
   text-align: justify;
-  height: 100%;
+  height: 60%;
   overflow: hidden;
 }
 .card__price {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
   font-weight: bold;
   text-align: end;
-  position: absolute;
   bottom: 0px;
-  width: 85%;
+  width: 100%;
+  height: 40%;
   font-size: 1.5rem;
 }
 .card__price__list {

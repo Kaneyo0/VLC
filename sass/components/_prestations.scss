@@ -1,14 +1,12 @@
 @use '../abstract/mixin' as *;
 
 .prestations__list {
-    height: 30rem;
-    @include mq(M) {
-        height: 35rem;
-    }
+    height: 35rem;
 }
 
 .prestation__card {
-    height: 10rem;
+    height: 15rem;
+    width: 13rem !important;
 }
 
 .prestation__card .card__price {
