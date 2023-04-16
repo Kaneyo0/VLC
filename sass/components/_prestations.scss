@@ -1,7 +1,10 @@
 @use '../abstract/mixin' as *;
 
 .prestations__list {
-    height: 35rem;
+    height: 34rem;
+    @include mq(M) {
+        height: 35rem;
+    }
 }
 
 .prestation__card {

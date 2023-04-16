@@ -22,7 +22,6 @@ class Forfait {
                     priceElem = this.templates.cloneNode(true).querySelector('.card__price__list');
                     priceElem.querySelector('.card__price__text').textContent = forfaitPrice.text;
                     priceElem.querySelector('.card__price__value').textContent = forfaitPrice.value;
-        
                     this.price.append(priceElem);
                 });
             } else {
@@ -30,7 +29,6 @@ class Forfait {
                 price.forEach(forfaitPrice => {
                     priceElem[index].querySelector('.card__price__text').textContent = forfaitPrice.text;
                     priceElem[index].querySelector('.card__price__value').textContent = forfaitPrice.value;
-        
                     index++;
                 });
             }    

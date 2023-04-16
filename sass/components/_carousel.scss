@@ -1,55 +1,62 @@
 @use '../abstract/mixin' as *;
 
-.forfaits__list, .prestations__list {
-    display: flex;
+.prestations__list {
     flex-direction: column;
     flex-wrap: wrap;
-    flex-basis: content;
-    width: 100%;
     justify-content: center;
-    align-items: baseline;
+    align-content: baseline;
 }
-
-.carousel__container {
-    transition: transform 0.3s;
-    transform: translate3d(0, 0, 0);
-}
-
-.carousel__prev, .carousel__next {
-    z-index: 5;
-    position: absolute;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 1.5rem;
-    width: 3rem;
-    height: 3rem;
-    background-color: var(--pink-color);
-    top: 50%;
-    padding: 1.5rem;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-@media (hover: hover) {
-    .carousel__prev:hover, .carousel__next:hover {
-        background-color: var(--pink-hover-color);
-        transform: scale(1.2);
+    
+.carousel {
+    &__container {
+        transition: transform 0.3s;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        overflow-x: scroll !important;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        /* Firefox scrollbar */
+        scrollbar-width: none;
+        /* other scrollbar */
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
-}
-
-.carousel__prev { 
-    background-image: url('../../public/assets/left.svg');
-    left: 0.5rem;
-    @include mq(M) {
-        left: 2rem;
+    &__prev { 
+        background-image: url('../../public/assets/left.svg');
+        left: 0.5rem;
+        @include mq(M) {
+            left: 2rem;
+        }
     }
-}
-
-.carousel__next {
-    background-image: url('../../public/assets/right.svg');
-    right: 0.5rem;
-    @include mq(M) {
-        right: 2rem;
+    &__next {
+        background-image: url('../../public/assets/right.svg');
+        right: 0.5rem;
+        @include mq(M) {
+            right: 2rem;
+        }
+    }
+    &__prev, &__next {
+        z-index: 5;
+        position: absolute;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 1.5rem;
+        width: 3rem;
+        height: 3rem;
+        background-color: var(--pink-color);
+        top: 50%;
+        padding: 1.5rem;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform 0.3s;
+        @media (hover: hover) {
+            &:hover {
+                background-color: var(--pink-hover-color);
+                transform: scale(1.2);
+            }
+        }
     }
 }

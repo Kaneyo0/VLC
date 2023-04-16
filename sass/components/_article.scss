@@ -6,6 +6,7 @@
     background-color: var(--main-color);
     overflow: hidden;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     &__title {
         text-transform: uppercase;
         position: inherit;
