@@ -1,4 +1,6 @@
 :root {
+    --mobile-header-height: 15%;
+    --mobile-main-height: calc(100% - var(--mobile-header-height));
     --header-height: 10%;
     --main-height: calc(100% - var(--header-height));
 

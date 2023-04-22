@@ -12,12 +12,15 @@ body {
 .header {
     position: relative;
     z-index: 10;
-    height: var(--header-height);
+    height: var(--mobile-header-height);
     background: var(--secondary-color);
+    @include mq(M) {
+        height: var(--header-height);
+    }
 }
 
 .main {
-    height: var(--main-height);
+    height: var(--mobile-main-height);
     overflow-y: scroll;
     scroll-behavior: smooth;
     scroll-snap-type: y mandatory;
@@ -26,6 +29,9 @@ body {
     /* other scrollbar */
     &::-webkit-scrollbar {
         display: none;
+    }
+    @include mq(M) {
+        height: var(--main-height);
     }
 }
 
