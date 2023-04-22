@@ -1,8 +1,8 @@
 :root {
-    --mobile-header-height: 15%;
-    --mobile-main-height: calc(100% - var(--mobile-header-height));
-    --header-height: 10%;
-    --main-height: calc(100% - var(--header-height));
+    --mobile-header-height: 15vh;
+    --mobile-main-height: calc(100vh - var(--mobile-header-height));
+    --header-height: 10vh;
+    --main-height: calc(100vh - var(--header-height));
 
     --bkg-image-color: rgb(33, 24, 82);
     --main-color: rgb(18, 11, 59);

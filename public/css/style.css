@@ -73,10 +73,10 @@ select {
   }
 }
 :root {
-  --mobile-header-height: 15%;
-  --mobile-main-height: calc(100% - var(--mobile-header-height));
-  --header-height: 10%;
-  --main-height: calc(100% - var(--header-height));
+  --mobile-header-height: 15vh;
+  --mobile-main-height: calc(100vh - var(--mobile-header-height));
+  --header-height: 10vh;
+  --main-height: calc(100vh - var(--header-height));
   --bkg-image-color: rgb(33, 24, 82);
   --main-color: rgb(18, 11, 59);
   --secondary-color: rgb(70, 52, 169);
@@ -98,7 +98,9 @@ body {
   font-family: var(--ff-source);
   font-size: var(--fs-regular);
   color: white;
-  height: 100vh;
+  height: -moz-available; /* WebKit-based browsers will ignore this. */
+  height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+  height: fill-available;
   overflow-y: hidden;
   -webkit-tap-highlight-color: transparent;
 }

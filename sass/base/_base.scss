@@ -4,7 +4,11 @@ body {
     font-family: var(--ff-source);
     font-size: var(--fs-regular);
     color: white;
-    height: 100vh;
+    //height: 100vh;
+    //height: 100%;
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
     overflow-y: hidden;
     -webkit-tap-highlight-color: transparent;
 }
