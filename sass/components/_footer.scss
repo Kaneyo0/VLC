@@ -3,12 +3,11 @@
 .footer {
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 2rem;
     padding: 1rem 2rem;
     @include mq(M) {
         height: 70% !important;
         justify-content: space-around;
-        gap: 2rem;
         flex-direction: row;
         font-size: 1rem;
     }

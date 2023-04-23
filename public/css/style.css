@@ -73,8 +73,8 @@ select {
   }
 }
 :root {
-  --mobile-header-height: 15vh;
-  --mobile-main-height: calc(100vh - var(--mobile-header-height));
+  --mobile-header-height: 13vh;
+  --mobile-main-height: calc(90vh - var(--mobile-header-height));
   --header-height: 10vh;
   --main-height: calc(100vh - var(--header-height));
   --bkg-image-color: rgb(33, 24, 82);
@@ -97,10 +97,8 @@ select {
 body {
   font-family: var(--ff-source);
   font-size: var(--fs-regular);
+  background-color: var(--main-color);
   color: white;
-  height: -moz-available; /* WebKit-based browsers will ignore this. */
-  height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-  height: fill-available;
   overflow-y: hidden;
   -webkit-tap-highlight-color: transparent;
 }
@@ -108,8 +106,8 @@ body {
 .header {
   position: relative;
   z-index: 10;
-  height: var(--mobile-header-height);
   background: var(--secondary-color);
+  height: var(--mobile-header-height);
 }
 @media (min-width: 1000px) {
   .header {
@@ -252,7 +250,6 @@ body {
 .description {
   position: relative;
   z-index: 7;
-  height: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url("../../public/assets/home2.webp");
   background-position: 85%;
   background-repeat: no-repeat;
@@ -270,11 +267,12 @@ body {
   height: 100%;
   width: 90% !important;
   text-shadow: 0px 0px 2px var(--grey-color);
-  padding: 9rem 10% !important;
+  padding: 5rem 5% !important;
   text-align: center;
 }
 @media (min-width: 1300px) {
   .description__content {
+    padding: 9rem 10% !important;
     width: 100% !important;
   }
 }
@@ -297,12 +295,7 @@ body {
 }
 
 .forfait__card {
-  height: 28rem;
-}
-@media (min-width: 1000px) {
-  .forfait__card {
-    height: 25rem;
-  }
+  height: 25rem;
 }
 
 .prestations__list {
@@ -326,14 +319,13 @@ body {
 .footer {
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 2rem;
   padding: 1rem 2rem;
 }
 @media (min-width: 1000px) {
   .footer {
     height: 70% !important;
     justify-content: space-around;
-    gap: 2rem;
     flex-direction: row;
     font-size: 1rem;
   }
@@ -365,7 +357,7 @@ body {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  gap: 1rem;
+  gap: 0.5rem;
   background-color: var(--secondary-color);
   border: 5px solid var(--third-color);
   padding: 1rem;
@@ -381,6 +373,7 @@ body {
 @media (min-width: 1000px) {
   .card {
     width: 350px;
+    gap: 1rem;
   }
 }
 @media (hover: hover) {
@@ -393,9 +386,16 @@ body {
   height: 80%;
 }
 .card__title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  line-height: 1.4rem;
   padding: 0 1rem;
   text-transform: uppercase;
+}
+@media (min-width: 1000px) {
+  .card__title {
+    font-size: 1.5rem;
+    line-height: 1.6rem;
+  }
 }
 .card__description {
   font-size: var(--fs-regular);
@@ -412,7 +412,12 @@ body {
   bottom: 0px;
   width: 100%;
   height: 40%;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+}
+@media (min-width: 1000px) {
+  .card__price {
+    font-size: 1.5rem;
+  }
 }
 .card__price__list {
   display: flex;

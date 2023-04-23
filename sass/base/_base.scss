@@ -3,12 +3,8 @@
 body {
     font-family: var(--ff-source);
     font-size: var(--fs-regular);
+    background-color: var(--main-color);
     color: white;
-    //height: 100vh;
-    //height: 100%;
-    height: -moz-available;          /* WebKit-based browsers will ignore this. */
-    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
-    height: fill-available;
     overflow-y: hidden;
     -webkit-tap-highlight-color: transparent;
 }
@@ -16,8 +12,8 @@ body {
 .header {
     position: relative;
     z-index: 10;
-    height: var(--mobile-header-height);
     background: var(--secondary-color);
+    height: var(--mobile-header-height);
     @include mq(M) {
         height: var(--header-height);
     }
