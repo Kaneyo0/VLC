@@ -74,7 +74,7 @@ select {
 }
 :root {
   --mobile-header-height: 13vh;
-  --mobile-main-height: calc(90vh - var(--mobile-header-height));
+  --mobile-main-height: calc(100vh - var(--mobile-header-height));
   --header-height: 10vh;
   --main-height: calc(100vh - var(--header-height));
   --bkg-image-color: rgb(33, 24, 82);
