@@ -1,9 +1,10 @@
 @use '../abstract/mixin' as *;
 
-.forfaits__list {
-    height: 0rem;
+.forfaits {
+    & .article__content {
+        height: 80% !important;
+    }
 }
-
 .forfait__card {
     height: 25rem;
 }

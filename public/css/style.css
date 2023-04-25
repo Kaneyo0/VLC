@@ -290,20 +290,17 @@ body {
   font-size: 1rem;
 }
 
-.forfaits__list {
-  height: 0rem;
+.forfaits .article__content {
+  height: 80% !important;
 }
 
 .forfait__card {
   height: 25rem;
 }
 
-.prestations__list {
-  height: 34rem;
-}
 @media (min-width: 1000px) {
   .prestations__list {
-    height: 35rem;
+    height: 80% !important;
   }
 }
 
@@ -482,13 +479,16 @@ body {
   padding: 1.5rem;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: all 0.3s;
 }
 @media (hover: hover) {
   .carousel__prev:hover, .carousel__next:hover {
     background-color: var(--pink-hover-color);
     transform: scale(1.2);
   }
+}
+.carousel__disabled {
+  opacity: 0;
 }
 
 .article {

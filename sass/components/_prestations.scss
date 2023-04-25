@@ -1,9 +1,9 @@
 @use '../abstract/mixin' as *;
 
 .prestations__list {
-    height: 34rem;
+    //height: 34rem;
     @include mq(M) {
-        height: 35rem;
+        height: 80% !important;
     }
 }
 

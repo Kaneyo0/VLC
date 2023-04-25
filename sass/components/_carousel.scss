@@ -51,12 +51,15 @@
         padding: 1.5rem;
         border-radius: 50%;
         cursor: pointer;
-        transition: transform 0.3s;
+        transition: all 0.3s;
         @media (hover: hover) {
             &:hover {
                 background-color: var(--pink-hover-color);
                 transform: scale(1.2);
             }
         }
+    }
+    &__disabled {
+        opacity: 0;
     }
 }
